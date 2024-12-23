@@ -1,0 +1,39 @@
+version: '3.8'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+    depends_on:
+      - mysqldb
+    environment:
+      - DB_HOST=mysqldb
+      - DB_PORT=3306
+      - DB_NAME=grocery_booking
+      - USERNAME=root
+      - PASSWORD=root
+      - AUTO_LOAD_ENTITIES=true
+      - SYNCHRONIZE=true
+    networks:
+      - nodejs-mysql-network
+
+  mysqldb:
+    image: mysql:8.0.33
+    ports:
+      - 3306:3306
+    environment:
+      - MYSQL_DATABASE=grocery_booking
+      - MYSQL_ROOT_PASSWORD=root
+    volumes:
+      - mysql-data:/var/lib/mysql
+    networks:
+      - nodejs-mysql-network
+
+volumes:
+  mysql-data:
+
+networks:
+  nodejs-mysql-network:
+    name: nodejs-mysql-network

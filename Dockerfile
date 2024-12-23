@@ -6,7 +6,7 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 
 # Install dependencies
-RUN npm install --production
+RUN npm install
 
 # Copy source files
 COPY . .
@@ -14,12 +14,6 @@ COPY . .
 # Build application
 RUN npm run build
 
-# Production image
-FROM node:22.9.0-alpine AS runner
+EXPOSE 3000
 
-WORKDIR /usr/src/app
-
-# Copy build artifacts
-COPY --from=builder /usr/src/app/dist ./dist
-COPY --from=builder /usr/src/app/node_modules ./node_modules
-COPY --from=builder /usr/src/app/package*.json ./
+CMD [ "npm", "start" ]

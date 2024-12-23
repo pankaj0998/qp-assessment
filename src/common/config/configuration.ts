@@ -14,11 +14,11 @@ export default () => ({
         },
     },
     database: {
-        host: process.env.DATABASE_HOST || 'localhost',
-        port: parseInt(process.env.DATABASE_PORT, 10) || 3306,
+        host: process.env.DB_HOST || 'localhost',
+        port: parseInt(process.env.DB_PORT, 10) || 3306,
         userName: process.env.USER_NAME || 'root',
         password: process.env.PASSWORD || 'my-secret-pw',
-        databaseName: process.env.DATABASE_NAME || 'grocery-booking',
+        databaseName: process.env.DB_NAME || 'grocery-booking',
         autoLoadEntities: (process.env.AUTO_LOAD_ENTITIES === 'true') || true,
         synchronize: (process.env.SYNCHRONIZE === 'true') || true,
     }
