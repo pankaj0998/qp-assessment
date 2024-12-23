@@ -51,3 +51,12 @@ $ npm run start:prod
 http://localhost:3000/docs
 
 ```
+
+## TO run using docker
+
+```bash
+$ docker-compose up --build
+
+$ docker-compose down
+
+```
